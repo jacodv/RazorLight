@@ -2,11 +2,12 @@
 using System.Dynamic;
 using System.Reflection;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using RazorLight.Razor;
-using Xunit;
 
 namespace RazorLight.Tests.NetCore3
 {
+  [TestFixture]
   public class SimpleRazorAsStringTests
   {
     private readonly RazorLightEngine _engine;
@@ -20,7 +21,7 @@ namespace RazorLight.Tests.NetCore3
         .Build();
     }
 
-    [Fact]
+    [Test]
     public async Task CompileAsync_GivenSimpleTemplateAndModel_ShouldCompileAndReturnValidResult()
     {
       //setup
@@ -32,7 +33,7 @@ namespace RazorLight.Tests.NetCore3
       var result = await _engine.CompileRenderStringAsync(GetTemplateCachedId(template), template, model, (ExpandoObject)null);
 
       //assert
-      Assert.Equal(result,expected);
+      Assert.AreEqual(result,expected);
     }
 
     #region Private

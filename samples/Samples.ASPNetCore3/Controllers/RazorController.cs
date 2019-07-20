@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Samples.ASPNetCore3.Models;
 using Samples.ASPNetCore3.Services;
 
 namespace Samples.ASPNetCore3.Controllers
@@ -15,10 +18,18 @@ namespace Samples.ASPNetCore3.Controllers
 
     [HttpPost]
     [Route("/api/razor")]
-    public IActionResult Post([FromBody] dynamic model)
+    public IActionResult Post([FromBody] RazorModel model)
     {
-      var result = _razorService.Convert(model, "Item name: @Model.name");
-      return new JsonResult(new {Result=result});
+
+      try
+      {
+        var result = _razorService.Convert(JsonConvert.DeserializeObject<dynamic>(model.Data), model.Template);
+        return new ContentResult() { ContentType = "text/plain", Content = result };
+      }
+      catch (Exception ex)
+      {
+        return new ContentResult() { ContentType = "text/plain", Content = ex.ToString() };
+      }
     }
   }
 }
