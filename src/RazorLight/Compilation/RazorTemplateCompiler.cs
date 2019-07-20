@@ -196,9 +196,13 @@ namespace RazorLight.Compilation
 		}
 
 		protected virtual CompiledTemplateDescriptor CompileAndEmit(RazorLightProjectItem projectItem)
-		{
-			IGeneratedRazorTemplate generatedTemplate = _razorSourceGenerator.GenerateCodeAsync(projectItem).GetAwaiter().GetResult();
-			Assembly assembly = _compiler.CompileAndEmit(generatedTemplate);
+    {
+      IGeneratedRazorTemplate generatedTemplate = _razorSourceGenerator
+        .GenerateCodeAsync(projectItem)
+        .GetAwaiter()
+        .GetResult();
+
+      Assembly assembly = _compiler.CompileAndEmit(generatedTemplate);
 
 			// Anything we compile from source will use Razor 2.1 and so should have the new metadata.
 			var loader = new RazorCompiledItemLoader();

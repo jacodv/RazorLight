@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Razor.Extensions;
 using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.AspNetCore.Razor.Language.Extensions;
@@ -14,29 +15,27 @@ namespace RazorLight
 			{
 				var razorProjectEngine = RazorProjectEngine.Create(RazorConfiguration.Default, new NullRazorProjectFileSystem() , builder =>
 				{
-					Instrumentation.InjectDirective.Register(builder);
-					Instrumentation.ModelDirective.Register(builder);
+          Instrumentation.InjectDirective.Register(builder);
+          Instrumentation.ModelDirective.Register(builder);
 
-					NamespaceDirective.Register(builder);
-					FunctionsDirective.Register(builder);
-					InheritsDirective.Register(builder);
-					SectionDirective.Register(builder);
+          //NamespaceDirective.Register(builder);
+          //FunctionsDirective.Register(builder);
+          //InheritsDirective.Register(builder);
+          //SectionDirective.Register(builder);
 
-					builder.Features.Add(new ModelExpressionPass());
-					builder.Features.Add(new RazorLightTemplateDocumentClassifierPass());
-					builder.Features.Add(new RazorLightAssemblyAttributeInjectionPass());
-					builder.Features.Add(new InstrumentationPass());
+          builder.Features.Add(new ModelExpressionPass());
+          builder.Features.Add(new RazorLightTemplateDocumentClassifierPass());
+          builder.Features.Add(new RazorLightAssemblyAttributeInjectionPass());
 
-
-					//builder.Features.Add(new ViewComponentTagHelperPass());
+          builder.Features.Add(new ViewComponentTagHelperPass());
 
 
-					//builder.AddTargetExtension(new TemplateTargetExtension()
-					//{
-					//    TemplateTypeName = "global::Microsoft.AspNetCore.Mvc.Razor.HelperResult",
-					//});
+          //builder.AddTargetExtension(new TemplateTargetExtension()
+          //{
+          //    TemplateTypeName = "global::Microsoft.AspNetCore.Mvc.Razor.HelperResult",
+          //});
 
-				});
+        });
 
 				return razorProjectEngine.Engine;
 			}
@@ -49,10 +48,17 @@ namespace RazorLight
 				throw new System.NotImplementedException();
 			}
 
+      [Obsolete]
 			public override RazorProjectItem GetItem(string path)
 			{
 				throw new System.NotImplementedException();
 			}
-		}
+
+      /// <inheritdoc />
+      public override RazorProjectItem GetItem(string path, string fileKind)
+      {
+        throw new System.NotImplementedException();
+      }
+    }
 	}
 }

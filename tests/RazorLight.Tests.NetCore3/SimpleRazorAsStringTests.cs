@@ -28,9 +28,26 @@ namespace RazorLight.Tests.NetCore3
       dynamic model = new {name = "TheName", date = DateTime.Now, number=999};
       var template = "Name=@Model.name";
       var expected = $"Name={model.name}";
-
+      var cacheKey = GetTemplateCachedId(template);
+      string result;
       //action
-      var result = await _engine.CompileRenderStringAsync(GetTemplateCachedId(template), template, model, (ExpandoObject)null);
+      try
+      {
+        result = await _engine.CompileRenderAsync(cacheKey, model, (ExpandoObject) null);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e);
+        try
+        {
+          result = await _engine.CompileRenderStringAsync(cacheKey, template, model, (ExpandoObject)null);
+        }
+        catch (Exception exception)
+        {
+          Console.WriteLine(exception);
+          throw;
+        }
+      }
 
       //assert
       Assert.AreEqual(result,expected);
