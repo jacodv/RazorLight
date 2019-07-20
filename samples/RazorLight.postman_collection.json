@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "13f6a41f-01fd-4b7c-89c0-126c5cd2b411",
+		"name": "RazorLight",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/api/razor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tData: \"{name:\\\"TheName\\\", number:1}\",\n\tTemplate: \"Name=@Model.name\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/razor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"razor"
+					]
+				},
+				"description": "Test razor sample"
+			},
+			"response": []
+		}
+	]
+}

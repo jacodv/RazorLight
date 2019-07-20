@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorLight.Tests", "tests\RazorLight.Tests\RazorLight.Tests.csproj", "{63EE1F3F-C71E-48DA-8135-9E602D6B7206}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{61D04B29-43F8-4FE3-A12E-BB16743BFB65}"
+	ProjectSection(SolutionItems) = preProject
+		samples\RazorLight.postman_collection.json = samples\RazorLight.postman_collection.json
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.EntityFrameworkProject", "samples\RazorLight.Samples\Samples.EntityFrameworkProject.csproj", "{C9B26DF6-F8E6-481A-B497-C8999641A99D}"
 EndProject
@@ -25,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.ASPNetCore3", "samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorLight.Tests.NetCore3", "tests\RazorLight.Tests.NetCore3\RazorLight.Tests.NetCore3.csproj", "{44B4D385-A011-446D-8AAF-9DFCD78782D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorLight.Tests.AspNetCore3", "tests\RazorLight.Tests.AspNetCore3\RazorLight.Tests.AspNetCore3.csproj", "{BF3BA22F-5E1F-4F3E-94D9-4471C5209D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorLight.Tests.AspNetCore3", "tests\RazorLight.Tests.AspNetCore3\RazorLight.Tests.AspNetCore3.csproj", "{BF3BA22F-5E1F-4F3E-94D9-4471C5209D90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
